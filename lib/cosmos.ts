@@ -6,9 +6,9 @@ const databaseId = process.env.COSMOS_DB_NAME!;
 const containerId = process.env.COSMOS_CONTAINER_NAME!;
 
 export function getCosmosContainer() {
-  if (!endpoint || !key || !databaseId || !containerId) {
-    throw new Error("Missing Cosmos environment variables.");
-  }
-  const client = new CosmosClient({ endpoint, key });
-  return client.database(databaseId).container(containerId);
+	if (!endpoint || !key || !databaseId || !containerId) {
+		throw new Error("Missing Cosmos environment variables.");
+	}
+	const client = new CosmosClient({ endpoint, key });
+	return client.database(databaseId).container(containerId);
 }
