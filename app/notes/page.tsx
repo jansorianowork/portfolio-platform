@@ -1,3 +1,5 @@
+import { getCosmosContainer } from "@/lib/cosmos";
+
 type Note = {
 	id: string;
 	slug: string;
@@ -6,21 +8,16 @@ type Note = {
 	tags?: string[];
 };
 
-async function getNotes(): Promise<Note[]> {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/notes`, {
-		cache: "no-store",
-	});
-
-	if (!res.ok) {
-		throw new Error("Failed to fetch notes");
-	}
-
-	const data = await res.json();
-	return data.items ?? [];
-}
-
 export default async function NotesPage() {
-	const notes = await getNotes();
+	const container = getCosmosContainer();
+
+	const query = {
+		query: "SELECT TOP 50 * FROM c WHERE c.type = @type ORDER BY c.publishedAt DESC",
+		parameters: [{ name: "@type", value: "note" }],
+	};
+
+	const { resources } = await container.items.query(query).fetchAll();
+	const notes = (resources ?? []) as Note[];
 
 	return (
 		<main className="max-w-3xl mx-auto px-6 py-12">
