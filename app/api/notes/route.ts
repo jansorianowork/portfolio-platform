@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getCosmosContainer } from "@/lib/cosmos";
+import { getErrorMessage } from "@/lib/errorHandler";
 
 export async function GET() {
 	try {
@@ -14,10 +15,7 @@ export async function GET() {
 
 		return NextResponse.json({ items: resources ?? [] });
 	} catch (err: unknown) {
-		const error = err instanceof Error ? err.message : "Auth error";
-		return NextResponse.json(
-			{ error: error ?? "Failed to fetch notes" },
-			{ status: 500 },
-		);
+		const error = getErrorMessage(err, "Failed to fetch notes");
+		return NextResponse.json({ error }, { status: 500 });
 	}
 }
