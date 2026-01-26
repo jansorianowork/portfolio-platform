@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const ADMIN_GITHUB_LOGINS = ["jansorianowork"];
@@ -69,9 +70,9 @@ export default function AdminPage() {
 				<p className="text-sm text-muted-foreground">
 					You’re not logged in.
 				</p>
-				<a className="underline" href="/.auth/login/github">
+				<Link className="underline" href="/.auth/login/github">
 					Login with GitHub
-				</a>
+				</Link>
 			</div>
 		);
 	}
@@ -87,9 +88,9 @@ export default function AdminPage() {
 				<pre className="text-xs p-3 rounded-md bg-neutral-100 overflow-auto">
 					{JSON.stringify(state.user, null, 2)}
 				</pre>
-				<a className="underline" href="/.auth/logout">
+				<Link className="underline" href="/.auth/logout">
 					Logout
-				</a>
+				</Link>
 			</div>
 		);
 	}
@@ -111,9 +112,9 @@ export default function AdminPage() {
 				</ul>
 			</div>
 
-			<a className="underline text-sm" href="/.auth/logout">
+			<Link className="underline text-sm" href="/.auth/logout">
 				Logout
-			</a>
+			</Link>
 		</div>
 	);
 }

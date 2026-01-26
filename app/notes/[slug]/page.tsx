@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type Note = {
@@ -42,19 +43,18 @@ export default function NoteDetailPage({
 		return (
 			<main className="max-w-3xl mx-auto px-6 py-12 space-y-4">
 				<h1 className="text-2xl font-semibold">Note not found</h1>
-				<a className="underline" href="/notes">
+				<Link className="underline" href="/notes">
 					Back to notes
-				</a>
+				</Link>
 			</main>
 		);
 	}
 
 	return (
 		<main className="max-w-3xl mx-auto px-6 py-12 space-y-6">
-			<a className="underline text-sm" href="/notes">
+			<Link className="underline text-sm" href="/notes">
 				← Back
-			</a>
-
+			</Link>
 			<header className="space-y-1">
 				<h1 className="text-3xl font-semibold">{note.title}</h1>
 				<div className="text-sm text-muted-foreground">

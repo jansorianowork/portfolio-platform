@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type Note = {
@@ -44,12 +45,12 @@ export default function NotesPage() {
 			<ul className="space-y-6">
 				{notes.map((note) => (
 					<li key={note.id} className="border-b pb-4">
-						<a
+						<Link
 							href={`/notes/${note.slug}`}
 							className="text-xl font-medium hover:underline"
 						>
 							{note.title}
-						</a>
+						</Link>
 						<div className="text-sm text-muted-foreground mt-1">
 							{new Date(note.publishedAt).toDateString()}
 						</div>
