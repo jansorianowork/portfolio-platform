@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type Note = {
@@ -12,24 +13,22 @@ type Note = {
 	contentMarkdown?: string;
 };
 
-export default function NoteDetailPage({
-	params,
-}: {
-	params: { slug: string };
-}) {
+export default function NoteDetailPage() {
+	const params = useParams();
+	const slug = params.slug as string;
 	const [note, setNote] = useState<Note | null>(null);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		(async () => {
-			const res = await fetch(`/api/notes/${params.slug}`, {
+			const res = await fetch(`/api/notes/${slug}`, {
 				cache: "no-store",
 			});
 			const data = await res.json();
 			setNote(data.note ?? null);
 			setLoading(false);
 		})();
-	}, [params.slug]);
+	}, [slug]);
 
 	if (loading) {
 		return (
