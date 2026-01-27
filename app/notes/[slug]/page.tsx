@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -63,9 +65,9 @@ export default function NoteDetailPage() {
 
 			<article className="prose prose-neutral max-w-none">
 				{/* For now, render as plain text. We'll add markdown rendering next. */}
-				<pre className="whitespace-pre-wrap text-sm">
+				<ReactMarkdown remarkPlugins={[remarkGfm]}>
 					{note.contentMarkdown ?? ""}
-				</pre>
+				</ReactMarkdown>
 			</article>
 		</main>
 	);
