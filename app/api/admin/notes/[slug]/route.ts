@@ -25,13 +25,14 @@ async function findNoteBySlug(container: Container, slug: string) {
 
 export async function PUT(
 	req: Request,
-	{ params }: { params: { slug: string } },
+	{ params }: { params: Promise<{ slug: string }> },
 ) {
+	const { slug } = await params;
 	try {
 		assertAdminFromSwaHeaders(req);
 
 		const container = getCosmosContainer();
-		const existing = await findNoteBySlug(container, params.slug);
+		const existing = await findNoteBySlug(container, slug);
 
 		if (!existing) {
 			return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -61,13 +62,14 @@ export async function PUT(
 
 export async function DELETE(
 	req: Request,
-	{ params }: { params: { slug: string } },
+	{ params }: { params: Promise<{ slug: string }> },
 ) {
+	const { slug } = await params;
 	try {
 		assertAdminFromSwaHeaders(req);
 
 		const container = getCosmosContainer();
-		const existing = await findNoteBySlug(container, params.slug);
+		const existing = await findNoteBySlug(container, slug);
 
 		if (!existing) {
 			return NextResponse.json({ error: "Not found" }, { status: 404 });
