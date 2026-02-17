@@ -40,7 +40,7 @@ export async function POST(req: Request) {
 
 		return NextResponse.json({ ok: true, note: doc });
 	} catch (err) {
-		const error = getErrorMessage(err, "Failed to fetch notes");
+		const error = getErrorMessage(err, "Failed to add notes");
 		const status = error === "Unauthorized" ? 401 : 500;
 		return NextResponse.json({ error: error }, { status });
 	}
