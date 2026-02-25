@@ -32,31 +32,43 @@ export default function NotesPage() {
 	}, []);
 
 	return (
-		<main className="max-w-3xl mx-auto px-6 py-12">
-			<h1 className="text-3xl font-semibold mb-8">Engineering Notes</h1>
+		<div className="min-h-screen">
+			{/* Header */}
+			<header className="px-6 py-6">
+				<div className="max-w-2xl mx-auto flex justify-between items-center">
+					<Link href="/" className="font-medium justify-center">
+						Jan Vincent
+					</Link>
+				</div>
+			</header>
+			<main className="max-w-3xl mx-auto px-6 py-12">
+				<h1 className="text-3xl font-semibold mb-8">
+					Engineering Notes
+				</h1>
 
-			{loading && <p className="text-muted-foreground">Loading…</p>}
-			{error && <p className="text-red-500 text-sm">{error}</p>}
+				{loading && <p className="text-muted-foreground">Loading…</p>}
+				{error && <p className="text-red-500 text-sm">{error}</p>}
 
-			{!loading && !error && notes.length === 0 && (
-				<p className="text-muted-foreground">No notes yet.</p>
-			)}
+				{!loading && !error && notes.length === 0 && (
+					<p className="text-muted-foreground">No notes yet.</p>
+				)}
 
-			<ul className="space-y-6">
-				{notes.map((note) => (
-					<li key={note.id} className="border-b pb-4">
-						<Link
-							href={`/notes/${note.slug}`}
-							className="text-xl font-medium hover:underline"
-						>
-							{note.title}
-						</Link>
-						<div className="text-sm text-muted-foreground mt-1">
-							{new Date(note.publishedAt).toDateString()}
-						</div>
-					</li>
-				))}
-			</ul>
-		</main>
+				<ul className="space-y-6">
+					{notes.map((note) => (
+						<li key={note.id} className="border-b pb-4">
+							<Link
+								href={`/notes/${note.slug}`}
+								className="text-xl font-medium hover:underline"
+							>
+								{note.title}
+							</Link>
+							<div className="text-sm text-muted-foreground mt-1">
+								{new Date(note.publishedAt).toDateString()}
+							</div>
+						</li>
+					))}
+				</ul>
+			</main>
+		</div>
 	);
 }

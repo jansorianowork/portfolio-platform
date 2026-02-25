@@ -13,53 +13,82 @@ export default function HomePage() {
 	};
 
 	return (
-		<div className="min-h-screen">
+		<div className="max-h-screen">
 			{/* Header */}
-			<header className="fixed top-0 left-0 right-0 bg-white">
+			<header className="bg-black fixed top-0 right-0 md:left-50">
 				<div className="max-w-2xl mx-auto px-6 py-6 flex justify-between items-center">
-					<div className="font-medium">Your Name</div>
-
-					<div className="flex items-center gap-6 text-sm">
-						<button
-							onClick={() => scrollTo("about")}
-							className="underline"
-						>
+					{/* Desktop Navigation */}
+					<div className="hidden md:flex items-center gap-6 text-sm">
+						<Link href="/" className="font-medium justify-center">
 							About
-						</button>
+						</Link>
 						<button
 							onClick={() => scrollTo("services")}
-							className="underline"
+							className=""
 						>
 							Services
 						</button>
 						<button
 							onClick={() => scrollTo("projects")}
-							className="underline"
+							className=""
 						>
 							Projects
 						</button>
 
-						<Link href="/notes" className="underline">
+						<Link href="/notes" className="">
 							Blog
 						</Link>
 
-						{/* Ellipsis */}
-						<div className="relative">
-							<button onClick={() => setMenuOpen(!menuOpen)}>
-								…
-							</button>
+						<button
+							onClick={() => scrollTo("contact")}
+							className=""
+						>
+							Contact
+						</button>
+					</div>
 
-							{menuOpen && (
-								<div className="absolute right-0 mt-2 border bg-white px-4 py-3 text-sm">
-									<button
-										onClick={() => scrollTo("contact")}
-										className="block underline"
-									>
-										Contact
-									</button>
-								</div>
-							)}
-						</div>
+					{/* Mobile Ellipsis */}
+					<div className="relative md:hidden">
+						<button
+							onClick={() => setMenuOpen(!menuOpen)}
+							className="text-xl"
+						>
+							…
+						</button>
+
+						{menuOpen && (
+							<div className="bg-black absolute right-0 mt-3 border  px-12 py-6 text-sm space-y-3">
+								<Link
+									href="/"
+									className="font-medium justify-center"
+								>
+									About
+								</Link>
+								<button
+									onClick={() => scrollTo("services")}
+									className="block "
+								>
+									Services
+								</button>
+								<button
+									onClick={() => scrollTo("projects")}
+									className="block"
+								>
+									Projects
+								</button>
+
+								<Link href="/notes" className="block">
+									Blog
+								</Link>
+
+								<button
+									onClick={() => scrollTo("contact")}
+									className="block"
+								>
+									Contact
+								</button>
+							</div>
+						)}
 					</div>
 				</div>
 			</header>
@@ -70,9 +99,20 @@ export default function HomePage() {
 			{/* Sections */}
 			<main className="max-w-2xl mx-auto px-6 space-y-32 pb-32">
 				<section id="about" className="space-y-6">
-					<h1 className="text-3xl font-semibold">About</h1>
-					<p className="text-neutral-600">
-						Short professional bio here.
+					<h1 className="text-3xl font-semibold">
+						Jan Vincent Soriano
+					</h1>
+					<h2 className="text-neutral-600">Front-end developer</h2>
+					<p>
+						With 5+ years of experience building and modernizing
+						React and Node.js applications in enterprise
+						environments. Experienced in runtime and dependency
+						upgrades, CI/CD-safe releases, API integrations, and
+						data archiving pipelines. Strong focus on building
+						reusable React and Next.js components and pages,
+						platform stability, security, and long-term
+						maintainability while delivering an accessible,
+						high-performance web application.
 					</p>
 				</section>
 
@@ -91,6 +131,11 @@ export default function HomePage() {
 					<p className="text-neutral-600">your@email.com</p>
 				</section>
 			</main>
+			<footer className=" bottom-0 justify-center md:left-50 py-10 text-sm text-neutral-500">
+				<div className="max-w-2xl mx-auto text-center">
+					© {new Date().getFullYear()} Jan Vincent Soriano
+				</div>
+			</footer>
 		</div>
 	);
 }
