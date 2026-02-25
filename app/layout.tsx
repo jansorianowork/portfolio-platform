@@ -21,7 +21,10 @@ export default function RootLayout({
 							<Link href="/" className="font-medium">
 								Your Name
 							</Link>
-							<Link href="/contact" className="text-sm underline">
+							<Link href="/about" className="text-sm ">
+								About
+							</Link>
+							<Link href="/contact" className="text-sm ">
 								Contact
 							</Link>
 						</div>
