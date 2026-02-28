@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-	title: "Your Name",
+	title: "Jan Vincent Soriano | Software Developer",
 	description: "Portfolio",
 };
 
